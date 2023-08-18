@@ -44,6 +44,16 @@ func main() {
 				},
 			},
 			{
+				Name:  "start_worker",
+				Usage: "start worker",
+				Action: func(cliContext *cli.Context) error {
+					cfg := config.FromFile(cliContext.String(flagConfig))
+					fmt.Println(cfg)
+					intLogger(cfg.LogLevel)
+					return cmd.StartWorker(cliContext.Context, cfg)
+				},
+			},
+			{
 				Name:  "version",
 				Usage: "version",
 				Action: func(_ *cli.Context) error {
